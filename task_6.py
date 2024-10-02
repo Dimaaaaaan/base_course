@@ -1,10 +1,19 @@
 age = input("Введите свой возраст: ")
-print(age)
+
+print("Ваш возраст - ",age)
+
 gender = input("Введите свой пол: ")
-print(gender)
+
+print("Ваш пол - ",gender )
+
 name = input("Введите своё имя: ")
-print(name)
+
+print("Ваше имя - ",name)
+
 city = input("Введите свой город: ")
-print(city)
+
+print("Вы живете в городе", city)
+
 grade = input("Введите свой класс: ")
-print(grade)
+
+print("Вы учитесь в",grade,"классе")
