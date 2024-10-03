@@ -1,11 +1,11 @@
-a = int(input("Введите первое число: "))
-b = int(input("Введите второе число: "))
+numder_1 = int(input("Введите первое число: "))
+numder_2 = int(input("Введите второе число: "))
 
-if b == 0:
+if numder_2 == 0:
     print("На ноль делить нельзя")
-elif a%b == 0:
+elif numder_1 % numder_2 == 0:
     print("Первое число делится на второе ")
-    print("Частное: ",a/b)
-elif a%b != 0:
+    print("Частное: ", numder_1 // numder_2)
+elif numder_1 % numder_2 != 0:
     print("Первое число не делится на второе")
-    print("Частное: ",a//b, "Остаток: ", a%b)
+    print("Частное: ", numder_1 // numder_2 , "; Остаток: ", numder_1 % numder_2)
