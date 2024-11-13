@@ -8,3 +8,4 @@ boltzmann_constant = 1.380649 * 10 ** -23
 electron_mass = 9.1093837139 * 10 ** -31
 conductance_quantum = 7.748091729 * 10 ** -5
 molar_planck_constant = 3.9903127128934314 * 10 ** -10
+g = 9.8
