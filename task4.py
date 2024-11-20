@@ -2,11 +2,11 @@ import numpy as np
 
 def values(a, b, N):
 
-    x_values = np.linspace(a, b, N)
+    x = np.linspace(a, b, N)
 
-    y_values = x_values ** 2
+    y = x ** 2
 
-    return y_values
+    return y
 
 
 a = int(input('Введите первый промежуток'))  
