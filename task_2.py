@@ -6,7 +6,7 @@ def giperbola_plotter(x1,x2,N):
     x = np.linspace(x1,x2,N)
     x != 1
     y = 1/x
-    plt.plot(x,y, color = 'r')
+    plt.plot(x,y, color = 'black')
     plt.savefig('task_2.png')
 
 if __name__ == '__main__':
