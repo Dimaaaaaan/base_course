@@ -1,4 +1,4 @@
-gravitational_constant = 6,67 * 10 ** -11
+gravitational_constant = 6.67 * 10 ** -11
 speed_of_light = 3 * 10 ** 8
 avogadro_constant = 6.02214076 * 10 ** 23
 planck_constant = 6.62607015 * 10 ** 34
