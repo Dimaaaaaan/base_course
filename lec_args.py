@@ -4,5 +4,5 @@ def my_func(a, b):
 
 tmp = my_func()
 
-def my_func(a = 1, b = 0):
+
     
