@@ -14,7 +14,7 @@ def circle_move(R, vx0, vy0, time):
  
  
 fig, ax = plt.subplots()
-ball, = plt.plot([], [], 'o', color='r', label='Ball')
+ball, = plt.plot([], [], '0', color='r', label='Ball')
  
  
 def animate(i):
