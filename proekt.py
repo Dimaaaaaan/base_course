@@ -1,49 +1,69 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
 
-# Параметры анимации
-g = 9.81  # ускорение свободного падения (м/с^2)
-bounce_factor = 0.8  # коэффициент отскока
-dt = 0.05  # шаг времени (с)
+num_steps = 10
+step_height = 1
+step_width = 2
+move_right_speed = 0.025
+bounce_factor = 1
 
-# Начальные условия
-y = 10.0  # начальная высота (м)
-v = 0.0   # начальная скорость (м/с)
 
-# Инициализация фигуры для анимации
+#Ступеньки
+x_steps = np.arange(num_steps) * step_width
+y_steps = np.arange(num_steps) * step_height
+
+
+ball_radius = 0.2
+ball_x = step_width / 2 
+ball_y = num_steps * step_height + ball_radius 
+velocity_y = 0  
+gravity = -0.01  
+
 fig, ax = plt.subplots()
-ax.set_xlim(-1, 1)  # пределы по оси X
-ax.set_ylim(0, 12)  # пределы по оси Y
-ball, = plt.plot([], [], 'o', markersize=20, color='red')  # мяч
+ax.set_xlim(-1, num_steps * step_width + 1)
+ax.set_ylim(0, num_steps * step_height + 3)
 
-# Функция инициализации
-def init():
-    ball.set_data([], [])
-    return ball,
+#Лестница
+for i in range(num_steps):
+    step = plt.Rectangle((x_steps[i], y_steps[i]), step_width, step_height, color='brown')
+    ax.add_artist(step)
 
-# Функция обновления для анимации
+#Мяч
+ball = plt.Circle((ball_x, ball_y), ball_radius, color='red')
+ax.add_artist(ball)
+
+
 def update(frame):
-    global y, v
+    global ball_y, velocity_y, ball_x
 
-    # Обновление положения и скорости
-    v += -g * dt  # падение под действием гравитации
-    y += v * dt  # обновление позиции мяча
+    ball_x += move_right_speed
 
-    # Проверка на отскок
-    if y <= 0:  # если мяч касается земли
-        y = 0  # коррекция позиции на уровне пола
-        v = -v * bounce_factor  # смена направления и уменьшение скорости
+    
+    velocity_y  += gravity 
+    ball_y += velocity_y 
 
-    ball.set_data(0, y)  # обновление положения мяча
+    #Столкновение
+    current_step = int(ball_x // step_width) 
+    if current_step < num_steps and ball_y - ball_radius <= y_steps[current_step]:
+        ball_y = y_steps[current_step] + ball_radius 
+        velocity_y = -velocity_y * bounce_factor  
+
+
+    if current_step == num_steps - 1 and velocity_y < 0:
+        velocity_y = 0 
+
+   
+    ball.set_center((ball_x, ball_y))
     return ball,
 
-# Создание анимации
-ani = FuncAnimation(fig, update, frames=np.arange(0, 200), init_func=init, blit=True, interval=50)
 
-plt.title("Падение мяча под действием гравитации")
-plt.xlabel("X")
-plt.ylabel("Y")
+ani = animation.FuncAnimation(fig, update, frames=300, interval=20)
+
+plt.title("Анимация мяча, падающего на лестницу")
+plt.xlabel("Ширина")
+plt.ylabel("Высота")
 plt.grid()
+plt.gca().set_aspect('equal', adjustable='box') 
 plt.show()
-plt.savefig('task_10_Astroida')
+ani.save('animation_7.gif')
