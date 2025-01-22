@@ -22,9 +22,6 @@ ax.set_ylim(0, num_steps * step_height + 3)
 
 
 
-#Мяч
-ball = plt.Circle((ball_x, ball_y), ball_radius, color='red')
-ax.add_artist(ball)
 
 
 def update(frame):
@@ -40,9 +37,7 @@ def update(frame):
 
     
 
-   
-    ball.set_center((ball_x, ball_y))
-    return ball,
+  
 
 
 ani = animation.FuncAnimation(fig, update, frames=300, interval=20)
