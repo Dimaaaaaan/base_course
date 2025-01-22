@@ -41,15 +41,10 @@ def update(frame):
     velocity_y  += gravity 
     ball_y += velocity_y 
 
-    #Столкновение
-    current_step = int(ball_x // step_width) 
-    if current_step < num_steps and ball_y - ball_radius <= y_steps[current_step]:
-        ball_y = y_steps[current_step] + ball_radius 
-        velocity_y = -velocity_y * bounce_factor  
 
 
-    if current_step == num_steps - 1 and velocity_y < 0:
-        velocity_y = 0 
+
+    
 
    
     ball.set_center((ball_x, ball_y))
