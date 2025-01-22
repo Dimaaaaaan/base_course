@@ -5,7 +5,6 @@ import matplotlib.animation as animation
 num_steps = 10
 step_height = 1
 step_width = 2
-move_right_speed = 0.025
 bounce_factor = 1
 
 
@@ -37,7 +36,6 @@ ax.add_artist(ball)
 def update(frame):
     global ball_y, velocity_y, ball_x
 
-    ball_x += move_right_speed
 
     
     velocity_y  += gravity 
