@@ -23,10 +23,7 @@ fig, ax = plt.subplots()
 ax.set_xlim(-1, num_steps * step_width + 1)
 ax.set_ylim(0, num_steps * step_height + 3)
 
-#Лестница
-for i in range(num_steps):
-    step = plt.Rectangle((x_steps[i], y_steps[i]), step_width, step_height, color='brown')
-    ax.add_artist(step)
+
 
 #Мяч
 ball = plt.Circle((ball_x, ball_y), ball_radius, color='red')
