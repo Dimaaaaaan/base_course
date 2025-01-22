@@ -1,50 +1,66 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-
-num_steps = 10
-step_height = 1
-step_width = 2
-bounce_factor = 1
+from matplotlib.animation import FuncAnimation
 
 
+g = 9.81
+bounce_factor =1.1
+dt = 0.05
 
 
-ball_radius = 0.2
-ball_x = step_width / 2 
-ball_y = num_steps * step_height + ball_radius 
-velocity_y = 0  
-gravity = -0.01  
+x = 0.0
+y = 10.0
+v_y = 0.0
+v_x = 2.0
+
 
 fig, ax = plt.subplots()
-ax.set_xlim(-1, num_steps * step_width + 1)
-ax.set_ylim(0, num_steps * step_height + 3)
+ax.set_xlim(-1, 1)
+ax.set_ylim(0, 12)
+ball, = plt.plot([], [], 'o', markersize=20, color='red')  # мяч
 
 
-
+def init():
+    ball.set_data([], [])
+    return ball,
 
 
 def update(frame):
-    global ball_y, velocity_y, ball_x
+    global x, y, v_x, v_y
 
 
-    
-    velocity_y  += gravity 
-    ball_y += velocity_y 
+    v_y += -g * dt
+    y += v_y * dt
+    x += v_x * dt
 
 
+    if y >= 12.0:
+        y = 12.0
+        v_y = -v_y * bounce_factor
 
 
-    
+    if y <= 0:
+        y = 0
+        v_y = -v_y * bounce_factor
 
-  
+
+    if x >= 1.0:
+        x = 1.0
+        v_x = -v_x * bounce_factor
+    elif x <= -1.0:
+        x = -1.0
+        v_x = -v_x * bounce_factor
 
 
-ani = animation.FuncAnimation(fig, update, frames=300, interval=20)
+    ball.set_data(x, y)
+    return ball,
 
-plt.xlabel("Ширина")
-plt.ylabel("Высота")
+
+ani = FuncAnimation(fig, update, frames=np.arange(0, 200), init_func=init, blit=True, interval=50)
+
+plt.title("Падение мяча под действием гравитации и отскок от стенок")
+plt.xlabel("X")
+plt.ylabel("Y")
 plt.grid()
-plt.gca().set_aspect('equal', adjustable='box') 
 plt.show()
 ani.save('animation_7.gif')
