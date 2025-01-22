@@ -8,9 +8,6 @@ step_width = 2
 bounce_factor = 1
 
 
-#Ступеньки
-x_steps = np.arange(num_steps) * step_width
-y_steps = np.arange(num_steps) * step_height
 
 
 ball_radius = 0.2
